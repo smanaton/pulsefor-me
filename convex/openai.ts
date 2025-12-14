@@ -5,14 +5,35 @@ import { action } from "./_generated/server";
 import OpenAI from "openai";
 import { Id } from "./_generated/dataModel";
 
-const apiKey = process.env.OPEN_AI_KEY;
-const openai = new OpenAI({ apiKey });
+const getAiConfig = () => {
+  const apiKey = process.env.OPENAI_API_KEY;
+  const baseURL = process.env.AI_BASE_URL || "https://openrouter.ai/api/v1";
+  const chatModel = process.env.AI_CHAT_MODEL || "openai/gpt-3.5-turbo";
+  const embeddingModel =
+    process.env.AI_EMBEDDING_MODEL || "openai/text-embedding-ada-002";
+
+  if (!apiKey) {
+    throw new Error("Missing OPENAI_API_KEY environment variable");
+  }
+
+  return { apiKey, baseURL, chatModel, embeddingModel };
+};
+
+const getOpenAIClient = () => {
+  const { apiKey, baseURL } = getAiConfig();
+  return new OpenAI({
+    apiKey,
+    baseURL,
+  });
+};
 
 export const suggestMissingItemsWithAi = action({
   args: {
     projectId: v.id("projects"),
   },
   handler: async (ctx, { projectId }) => {
+    const { chatModel } = getAiConfig();
+    const openai = getOpenAIClient();
     //retrieve todos for the user
     const todos = await ctx.runQuery(api.todos.getTodosByProjectId, {
       projectId,
@@ -41,7 +62,7 @@ export const suggestMissingItemsWithAi = action({
       response_format: {
         type: "json_object",
       },
-      model: "gpt-3.5-turbo",
+      model: chatModel, // Use environment variable
     });
 
     console.log(response.choices[0]);
@@ -80,6 +101,8 @@ export const suggestMissingSubItemsWithAi = action({
     description: v.string(),
   },
   handler: async (ctx, { projectId, parentId, taskName, description }) => {
+    const { chatModel } = getAiConfig();
+    const openai = getOpenAIClient();
     //retrieve todos for the user
     const todos = await ctx.runQuery(api.subTodos.getSubTodosByParentId, {
       parentId,
@@ -109,7 +132,7 @@ export const suggestMissingSubItemsWithAi = action({
       response_format: {
         type: "json_object",
       },
-      model: "gpt-3.5-turbo",
+      model: chatModel, // Use environment variable
     });
 
     console.log(response.choices[0]);
@@ -142,28 +165,28 @@ export const suggestMissingSubItemsWithAi = action({
 });
 
 export const getEmbeddingsWithAI = async (searchText: string) => {
-  if (!apiKey) {
-    throw new Error("Open AI Key is not defined");
-  }
+  const { apiKey, baseURL, embeddingModel } = getAiConfig();
 
   const req = {
     input: searchText,
-    model: "text-embedding-ada-002",
+    model: embeddingModel, // Use environment variable
     encoding_format: "float",
   };
 
-  const response = await fetch("https://api.openai.com/v1/embeddings", {
+  const response = await fetch(`${baseURL}/embeddings`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
+      "HTTP-Referer": "http://localhost:3000",
+      "X-Title": "pulsefor.me",
     },
     body: JSON.stringify(req),
   });
 
   if (!response.ok) {
     const msg = await response.text();
-    throw new Error(`OpenAI Error, ${msg}`);
+    throw new Error(`OpenRouter Error, ${msg}`);
   }
 
   const json = await response.json();

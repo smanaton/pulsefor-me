@@ -1,10 +1,10 @@
-# Todovex - An Open Source AI-Powered Todoist Clone
+# pulsefor.me - An Open Source AI-Powered Todoist Clone
 
 
 Built with the Next.js 14 App Router, Convex, React, Next.js Auth V5 i.e. Auth.js, Google Sign in, ShadCN UI library, React Hook Forms, TypeScript, OPenAI, TailwindCSS and more
 
 
-![Project Image](https://www.todovex.ai/og-image.png)
+![Project Image](https://pulsefor.me/og-image.png)
 
 ## Features
 - 🌐 Next.js & Server actions
@@ -48,7 +48,7 @@ To get started with this project, you need to do the following,
 
 ## Acknowledgements
 
-- [Convex](https://convex.dev/c/todovex) for making this project possible
+- [Convex](https://convex.dev) for making this project possible
 
 ## License
 

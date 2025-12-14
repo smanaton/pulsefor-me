@@ -1,7 +1,7 @@
 "use client";
 import { signInAction } from "@/actions/auth-action";
 import { Button } from "@/components/ui/button";
-import todovexLogo from "@/public/logo/todovex.svg";
+import pulseformeLogo from "@/public/logo/todovex.svg";
 import clsx from "clsx";
 import { Loader, StepForward } from "lucide-react";
 import Image from "next/image";
@@ -16,14 +16,14 @@ export default function LoginForm() {
         <div className="max-width flex items-center justify-center lg:justify-between">
           <Link className="flex items-center gap-1" href="/loggedin">
             <Image
-              src={todovexLogo}
+              src={pulseformeLogo}
               width="50"
               height="50"
               alt="logo"
               className="h-16 w-20 md:h-16 md:w-20"
             />
             <h1 className="text-xl hidden lg:flex font-medium text-gray-950 md:text-3xl">
-              TodoVex
+              pulsefor.me
             </h1>
           </Link>
           <div className="hidden lg:flex w-fit items-center">
@@ -42,7 +42,7 @@ export default function LoginForm() {
               <a
                 className="font-bold"
                 target="_blank"
-                href="https://convex.dev/c/todovex"
+                href="https://convex.dev"
               >
                 Convex{" "}
               </a>
@@ -61,7 +61,7 @@ export default function LoginForm() {
               Todoist Clone
             </h1>
             <h2 className="mt-8 text-center text-xl font-light tracking-tight lg:text-3xl">
-              TodoVex seamlessly{" "}
+              pulsefor.me seamlessly{" "}
               <span className="font-bold px-1">organizes your tasks</span> and
               <br className="hidden lg:inline-block" />
               <span className="font-bold px-1">predicts what&apos;s next</span>
@@ -109,7 +109,7 @@ export default function LoginForm() {
           <div>
             Powered by{" "}
             <a
-              href="https://convex.dev/c/todovex"
+              href="https://convex.dev"
               target="_blank"
               className="pr-1 font-bold transition hover:text-black/50"
             >
