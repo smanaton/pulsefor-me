@@ -41,7 +41,7 @@ To get started with this project, you need to do the following,
 - If you want to make changes and contribute to this project, you'll need to create a fork first.  Forking creates a copy of the original project in your own GitHub account. This lets you experiment with edits without affecting the main project.
 
 - Look for the "Fork" button in the top right corner of the project on GitHub. Clicking it will create a copy under your account with the same name.
-![image](https://github.com/kulkarniankita/todoist-clone-todovex/assets/2559673/f10c45ab-e2aa-4334-b32a-dcaa2873241a)
+![image](https://github.com/smanaton/pulsefor-me)
 
 - After forking the project, you can clone it just like you usually do.
 

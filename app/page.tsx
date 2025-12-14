@@ -72,12 +72,18 @@ export default function LoginForm() {
                 <GetStartedButton />
               </form>
               <div className="w-fit items-center">
-                <Button
-                  className="text-xl text-center px-4 py-7 bg-transparent border-purple-500/50"
-                  variant={"outline"}
+                <Link
+                  href="https://github.com/smanaton/pulsefor-me"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  Star on Github ⭐️
-                </Button>
+                  <Button
+                    className="text-xl text-center px-4 py-7 bg-transparent border-purple-500/50"
+                    variant={"outline"}
+                  >
+                    Star on GitHub ⭐️
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -140,7 +146,7 @@ export default function LoginForm() {
             <a
               className="group"
               aria-label="GitHub"
-              href="https://github.com/kulkarniankita/todoist-clone"
+              href="https://github.com/smanaton/pulsefor-me"
             >
               <svg
                 aria-hidden="true"
@@ -152,7 +158,7 @@ export default function LoginForm() {
             <a
               className="group"
               aria-label="GitHub"
-              href="https://github.com/kulkarniankita/todoist-clone"
+              href="https://github.com/smanaton/pulsefor-me"
             >
               <svg
                 viewBox="0 0 256 180"
